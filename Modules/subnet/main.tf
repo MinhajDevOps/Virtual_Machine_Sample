@@ -12,3 +12,7 @@ resource "azurerm_subnet" "snet-sampleblock" {
 output "snetname" {
   value = resource.azurerm_subnet.snet-sampleblock.name
 }
+
+output "snetid"{
+  value = resource.azurerm_subnet.snet-sampleblock.id
+}

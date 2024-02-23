@@ -25,3 +25,30 @@ variable "address_prefixes" {
   type = list(string)
 }
 
+#Network Security Group Variables
+variable "nsg-name" {
+  type = string
+}
+
+variable "security_rules" {
+  type = map(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+}
+
+#Network Security Group / Subnet Association
+# variable "subnet-id" {
+#   type = string
+# }
+
+# variable "nsg-id" {
+#   type = string
+# }

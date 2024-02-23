@@ -22,3 +22,20 @@ module "subnet" {
   rg-name          = module.resource_group.rgname
   vnet-name        = module.virtual_network.vnetname
 }
+
+#Netowrk Security Group
+module "network_security_group" {
+  source         = "../../Modules/network_security_group"
+  nsg-name       = var.nsg-name
+  rg-name        = module.resource_group.rgname
+  location       = module.resource_group.rglocation
+  security_rules = var.security_rules
+}
+
+#NSG Subnet Association
+module "nsg_subnet_association" {
+  source    = "../../Modules/nsg_association"
+  subnet-id = module.subnet.snetid
+  nsg-id    = module.network_security_group.nsg-id
+}
+
